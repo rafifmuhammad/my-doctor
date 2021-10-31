@@ -4,10 +4,10 @@ import {Header} from './../../components';
 import {Input, Button, Gap} from './../../components';
 import {colors} from './../../utils';
 
-const Register = () => {
+const Register = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <Header />
+      <Header title="Daftar Akun" onPress={() => navigation.goBack()} />
       <View style={styles.content}>
         <Input label="Full Name" />
         <Gap height={24} />
@@ -17,7 +17,10 @@ const Register = () => {
         <Gap height={24} />
         <Input label="Password" />
         <Gap height={40} />
-        <Button title="Continue" />
+        <Button
+          title="Continue"
+          onPress={() => navigation.navigate('UploadPhoto')}
+        />
       </View>
     </View>
   );

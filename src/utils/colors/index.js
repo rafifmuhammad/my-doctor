@@ -20,8 +20,8 @@ export const colors = {
       text: 'white',
     },
     secondary: {
-      background: mainColors.dark1,
-      text: 'black',
+      background: 'white',
+      text: mainColors.dark1,
     },
   },
   border: mainColors.grey2,
