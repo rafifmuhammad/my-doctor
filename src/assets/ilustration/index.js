@@ -6,5 +6,6 @@ import ILCatUmum from './cat-dok-umum.svg';
 import ILCatAnak from './cat-dok-anak.svg';
 import ILCatPsikiater from './cat-dok-psikiater.svg';
 import ILCatObat from './cat-dok-obat.svg';
+import ILHospitalBG from './hospital-background.png';
 
-export {ILLogo, ILGetStarted, ILNullPhoto, ILCatUmum, ILCatAnak, ILCatObat, ILCatPsikiater};
+export {ILLogo, ILGetStarted, ILNullPhoto, ILCatUmum, ILCatAnak, ILCatObat, ILCatPsikiater, ILHospitalBG};
