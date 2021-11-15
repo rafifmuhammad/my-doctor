@@ -1,19 +1,37 @@
-import React from 'react';
-import {StyleSheet, View, Image, Text} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
 import {Header, Button, Link, Gap} from './../../components';
-import {ILNullPhoto, IconAddPhoto} from '../../assets';
+import {ILNullPhoto, IconAddPhoto, IconRemovePhoto} from '../../assets';
 import {colors, fonts} from './../../utils';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 const UploadPhoto = ({navigation}) => {
+  const [hasPhoto, setHasPhoto] = useState(false);
+  const [photo, setPhoto] = useState(ILNullPhoto);
+
+  const getImage = () => {
+    launchImageLibrary({}, response => {
+      const source = {uri: response.assets[0].uri};
+
+      setPhoto(source);
+      setHasPhoto(true);
+
+      console.log('response: ', response);
+      console.log('isi photo: ', source);
+      console.log('has photo: ', hasPhoto);
+    });
+  };
+
   return (
     <View style={styles.page}>
       <Header title="Upload Photo" onPress={() => navigation.goBack()} />
       <View style={styles.content}>
         <View style={styles.profile}>
-          <View style={styles.avatarWrapper}>
-            <Image source={ILNullPhoto} style={styles.avatar} />
-            <IconAddPhoto style={styles.addPhoto} />
-          </View>
+          <TouchableOpacity style={styles.avatarWrapper} onPress={getImage}>
+            <Image source={photo} style={styles.avatar} />
+            {hasPhoto && <IconRemovePhoto style={styles.addPhoto} />}
+            {!hasPhoto && <IconAddPhoto style={styles.addPhoto} />}
+          </TouchableOpacity>
           <Text style={styles.name}>Rafif Muhammad</Text>
           <Text style={styles.profession}>Mobile Apps Developer</Text>
         </View>
@@ -21,6 +39,7 @@ const UploadPhoto = ({navigation}) => {
           <Button
             title="Upload and Continue"
             onPress={() => navigation.replace('MainApp')}
+            disable={!hasPhoto}
           />
           <Gap height={30} />
           <Link
@@ -45,6 +64,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 110,
     height: 110,
+    borderRadius: 110 / 2,
   },
   avatarWrapper: {
     width: 130,

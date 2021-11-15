@@ -5,6 +5,7 @@ import {Input, Button, Gap, Loading} from './../../components';
 import {colors, useForm} from './../../utils';
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 import {showMessage} from 'react-native-flash-message';
+import {getDatabase, ref, set} from 'firebase/database';
 
 const Register = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -17,15 +18,23 @@ const Register = ({navigation}) => {
   });
 
   const onContinue = () => {
+    const db = getDatabase();
     const auth = getAuth();
+    const data = {
+      fullName: form.fullName,
+      profession: form.profession,
+      email: form.email,
+    };
 
     console.log(form);
     setLoading(true);
 
     createUserWithEmailAndPassword(auth, form.email, form.password)
-      .then((userCredential, success) => {
+      .then(success => {
         setLoading(false);
         console.log('register success: ', success);
+
+        set(ref(db, 'users/' + success.user.uid + '/'), data);
         setForm('reset');
       })
       .catch(error => {
