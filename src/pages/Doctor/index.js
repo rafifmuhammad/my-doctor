@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {
   HomeProfile,
@@ -14,8 +14,16 @@ import {
   DummyDoctor2,
   DummyDoctor3,
 } from './../../assets';
+import {retrieveData} from './../../utils';
 
 const Doctor = ({navigation}) => {
+  console.log('');
+  useEffect(() => {
+    retrieveData('user').then(res => {
+      console.log('data user: ', res);
+    });
+  }, []);
+
   return (
     <View style={styles.page}>
       <View style={styles.content}>
