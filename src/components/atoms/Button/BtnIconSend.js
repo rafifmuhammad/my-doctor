@@ -1,14 +1,19 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {IconSend, IconSendActive} from './../../../assets';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {IconSendLight, IconSendDark} from './../../../assets';
 import {colors} from './../../../utils';
 
-const BtnIconSend = ({disable}) => {
-  return (
+const BtnIconSend = ({disable, onPress}) => {
+  if (disable) {
     <View style={styles.container(disable)}>
-      {disable && <IconSend />}
-      {!disable && <IconSendActive />}
-    </View>
+      <IconSendDark />
+    </View>;
+  }
+
+  return (
+    <TouchableOpacity style={styles.container(disable)} onPress={onPress}>
+      <IconSendLight />
+    </TouchableOpacity>
   );
 };
 
@@ -20,10 +25,11 @@ const styles = StyleSheet.create({
     width: 45,
     height: 45,
     borderRadius: 10,
-    alignItems: 'center',
     paddingTop: 3,
     paddingRight: 3,
     paddingBottom: 8,
     paddingLeft: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
   }),
 });

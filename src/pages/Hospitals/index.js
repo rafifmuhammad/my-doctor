@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View, ImageBackground} from 'react-native';
-import {colors, fonts} from './../../utils';
+import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import {
   ILHospitalBG,
   DummyHospital1,
   DummyHospital2,
   DummyHospital3,
 } from './../../assets';
+import {colors, fonts} from './../../utils';
 import {ListHospital} from './../../components';
 
 const Hospitals = () => {
@@ -17,24 +17,26 @@ const Hospitals = () => {
         <Text style={styles.desc}>3 tersedia</Text>
       </ImageBackground>
       <View style={styles.content}>
-        <ListHospital
-          type="Rumah Sakit"
-          name="Citra Bunga Merdeka"
-          address="Jln. Surya Sejahtera 20"
-          pic={DummyHospital1}
-        />
-        <ListHospital
-          type="Rumah Sakit Anak"
-          name="Happy Family & Kids"
-          address="Jln. Surya Sejahtera 20"
-          pic={DummyHospital2}
-        />
-        <ListHospital
-          type="Rumah Sakit Jiwa"
-          name="Tingkatan Paling Atas"
-          address="Jln. Surya Sejahtera 20"
-          pic={DummyHospital3}
-        />
+        <View>
+          <ListHospital
+            type="Rumah Sakit"
+            name="Citra Bunga Merdeka"
+            address="Jln. Surya Sejahtera 20"
+            pic={DummyHospital1}
+          />
+          <ListHospital
+            type="Rumah Sakit Anak"
+            name="Happy Family & Kids"
+            address="Jln. Surya Sejahtera 20"
+            pic={DummyHospital2}
+          />
+          <ListHospital
+            type="Rumah Sakit Jiwa"
+            name="Tingkatan Paling Atas"
+            address="Jln. Surya Sejahtera 20"
+            pic={DummyHospital3}
+          />
+        </View>
       </View>
     </View>
   );
@@ -44,15 +46,14 @@ export default Hospitals;
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: colors.secondary,
     flex: 1,
+    backgroundColor: colors.secondary,
   },
   content: {
-    backgroundColor: colors.white,
     flex: 1,
+    backgroundColor: colors.white,
     borderRadius: 20,
     marginTop: -30,
-    paddingTop: 14,
   },
   background: {
     height: 240,

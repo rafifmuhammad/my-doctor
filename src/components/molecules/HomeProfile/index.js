@@ -1,23 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import {ILNullPhoto} from '../../../assets';
-import {fonts, colors} from '../../../utils';
-import {retrieveData} from './../../../utils';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {ILNullPhoto} from './../../../assets';
+import {colors, fonts, getData} from './../../../utils';
 
 const HomeProfile = ({onPress}) => {
-  useEffect(() => {
-    retrieveData('user').then(res => {
-      const data = res;
-      data.photo = {uri: res.photo};
-      setProfile(res);
-    });
-  }, []);
-
   const [profile, setProfile] = useState({
     photo: ILNullPhoto,
     fullName: '',
     profession: '',
   });
+
+  useEffect(() => {
+    getData('user').then(res => {
+      const data = res;
+      data.photo = {uri: res.photo};
+
+      setProfile(data);
+    });
+  }, []);
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>

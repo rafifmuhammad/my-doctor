@@ -1,16 +1,16 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {IconBackDark, IconBackLight} from '../../../assets';
+import {IconBackDark, IconBackLight} from './../../../assets';
 
 const IconOnly = ({onPress, icon}) => {
   const Icon = () => {
-    if (icon === 'back-dart') {
+    if (icon === 'dark-back') {
       return <IconBackDark />;
     }
     if (icon === 'back-light') {
       return <IconBackLight />;
     }
-
     return <IconBackDark />;
   };
 

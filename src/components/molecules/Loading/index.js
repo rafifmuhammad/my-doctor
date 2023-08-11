@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, ActivityIndicator} from 'react-native';
+import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import {colors, fonts} from './../../../utils';
 
 const Loading = () => {
@@ -27,5 +27,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.primary,
     fontFamily: fonts.primary[600],
+    marginTop: 16,
   },
 });

@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {IconStar} from './../../../assets';
-import {fonts, colors} from './../../../utils';
+import {colors, fonts} from './../../../utils';
 
 const RatedDoctor = ({name, desc, avatar, onPress}) => {
   return (
@@ -28,14 +28,16 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 12,
-    alignItems: 'center',
+    paddingBottom: 16,
   },
   avatar: {
     width: 50,
     height: 50,
     borderRadius: 50 / 2,
     marginRight: 12,
+  },
+  profile: {
+    flex: 1,
   },
   rate: {
     flexDirection: 'row',
@@ -50,8 +52,5 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.normal,
     color: colors.text.secondary,
     marginTop: 2,
-  },
-  profile: {
-    flex: 1,
   },
 });

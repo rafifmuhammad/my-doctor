@@ -10,13 +10,13 @@ import {
   Messages,
   Hospitals,
   ChooseDoctor,
-  Chat,
+  Chatting,
   UserProfile,
-  UpdateProfile,
+  EditProfile,
   DoctorProfile,
-} from '../pages';
+} from './../pages';
+import {BottomNavigator} from './../components';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import BottomNavigator from './../components/molecules/BottomNavigator/index';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -82,18 +82,18 @@ const Router = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
+        name="Chatting"
+        component={Chatting}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
         name="UserProfile"
         component={UserProfile}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="UpdateProfile"
-        component={UpdateProfile}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Chat"
-        component={Chat}
+        name="EditProfile"
+        component={EditProfile}
         options={{headerShown: false}}
       />
       <Stack.Screen

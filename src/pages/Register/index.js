@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
-import {Header} from './../../components';
-import {Input, Button, Gap, Loading} from './../../components';
-import {colors, useForm} from './../../utils';
-import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import {Header, Input, Button, Gap, Loading} from './../../components';
+import {colors, useForm, storeData} from './../../utils';
+import {Fire} from './../../config';
 import {showMessage} from 'react-native-flash-message';
-import {getDatabase, ref, set} from 'firebase/database';
-import {storeData} from '../../utils';
 
 const Register = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -18,38 +15,49 @@ const Register = ({navigation}) => {
   });
 
   const onContinue = () => {
-    const db = getDatabase();
-    const auth = getAuth();
-
     console.log(form);
-    setLoading(true);
 
-    createUserWithEmailAndPassword(auth, form.email, form.password)
-      .then(success => {
+    setLoading(true);
+    Fire.auth()
+      .createUserWithEmailAndPassword(form.email, form.password)
+      .then(userCredential => {
+        // Signed in
+        const user = userCredential.user;
+
+        // data
         const data = {
           fullName: form.fullName,
           profession: form.profession,
           email: form.email,
-          uid: success.user.uid,
+          uid: user.uid,
         };
+
+        // Set loading
         setLoading(false);
-        console.log('register success: ', success);
 
-        set(ref(db, 'users/' + success.user.uid + '/'), data);
-
-        storeData('user', data);
-        navigation.navigate('UploadPhoto', data);
+        // Reset form
         setForm('reset');
+
+        // https://firebase.com/users
+        // Insert user's data
+        Fire.database()
+          .ref('users/' + user.uid + '/')
+          .set(data);
+
+        // Local storage for user's data
+        storeData('user', form);
+
+        console.log(user);
+        navigation.replace('UploadPhoto', data);
       })
       .catch(error => {
+        setLoading(false);
         const errorMessage = error.message;
 
-        setLoading(false);
+        // Show flash message
         showMessage({
           message: errorMessage,
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
+          type: 'danger',
         });
       });
   };
@@ -57,7 +65,12 @@ const Register = ({navigation}) => {
   return (
     <>
       <View style={styles.page}>
-        <Header title="Daftar Akun" onPress={() => navigation.goBack()} />
+        <Header
+          onPress={() => {
+            navigation.goBack();
+          }}
+          title="Daftar Akun"
+        />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.content}>
             <Input
@@ -98,11 +111,12 @@ export default Register;
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: colors.white,
     flex: 1,
+    backgroundColor: colors.white,
   },
   content: {
     padding: 40,
     paddingTop: 0,
+    backgroundColor: colors.white,
   },
 });

@@ -1,23 +1,22 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {ILCatAnak, ILCatUmum, ILCatPsikiater, ILCatObat} from '../../../assets';
-import {colors, fonts} from '../../../utils';
+import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {ILCatUmum, ILCatPsikiater, ILCatObat} from './../../../assets';
+import {colors, fonts} from './../../../utils';
+
 const DoctorCategory = ({category, onPress}) => {
   const Icon = () => {
     if (category === 'dokter umum') {
-      return <ILCatUmum style={styles.ilustration} />;
+      return <ILCatUmum style={styles.illustration} />;
     }
     if (category === 'psikiater') {
-      return <ILCatPsikiater style={styles.ilustration} />;
+      return <ILCatPsikiater style={styles.illustration} />;
     }
     if (category === 'dokter obat') {
-      return <ILCatObat style={styles.ilustration} />;
-    }
-    if (category === 'dokter anak') {
-      return <ILCatAnak style={styles.ilustration} />;
+      return <ILCatObat style={styles.illustration} />;
     }
 
-    return <ILCatUmum style={styles.ilustration} />;
+    return <ILCatUmum style={styles.illustration} />;
   };
 
   return (
@@ -36,18 +35,15 @@ const styles = StyleSheet.create({
     padding: 12,
     backgroundColor: colors.cardLight,
     alignSelf: 'flex-start',
-    marginRight: 10,
     borderRadius: 10,
-    width: 100,
-    height: 130,
+    marginRight: 10,
   },
-  ilustration: {
+  illustration: {
     marginBottom: 28,
   },
   label: {
     fontSize: 12,
     fontFamily: fonts.primary[300],
-    color: colors.text.primary,
   },
   category: {
     fontSize: 12,

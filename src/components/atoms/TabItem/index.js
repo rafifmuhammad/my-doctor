@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {
   IconDoctor,
   IconMessages,
@@ -7,8 +8,8 @@ import {
   IconDoctorActive,
   IconMessagesActive,
   IconHospitalsActive,
-} from '../../../assets';
-import {colors, fonts} from '../../../utils';
+} from './../../../assets';
+import {colors, fonts} from './../../../utils';
 
 const TabItem = ({title, active, onPress, onLongPress}) => {
   const Icon = () => {

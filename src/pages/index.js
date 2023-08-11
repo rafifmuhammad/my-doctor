@@ -1,29 +1,29 @@
-import Splash from './splash';
+import Splash from './Splash';
 import GetStarted from './GetStarted';
-import Register from './Register';
 import Login from './Login';
+import Register from './Register';
 import UploadPhoto from './UploadPhoto';
 import Doctor from './Doctor';
-import Hospitals from './Hospitals';
 import Messages from './Messages';
-import ChooseDoctor from './ChooseDoctor/index';
-import Chat from './Chat/index';
-import UserProfile from './UserProfile/index';
-import UpdateProfile from './UpdateProfile/index';
-import DoctorProfile from './DoctorProfile/index';
+import Hospitals from './Hospitals';
+import ChooseDoctor from './ChooseDoctor';
+import Chatting from './chatting';
+import UserProfile from './UserProfile';
+import EditProfile from './EditProfile';
+import DoctorProfile from './DoctorProfile';
 
 export {
   Splash,
   GetStarted,
-  Register,
   Login,
+  Register,
   UploadPhoto,
-  Messages,
   Doctor,
+  Messages,
   Hospitals,
   ChooseDoctor,
-  Chat,
+  Chatting,
   UserProfile,
-  UpdateProfile,
+  EditProfile,
   DoctorProfile,
 };

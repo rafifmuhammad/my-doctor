@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import {colors, fonts} from './../../../utils';
 
 const ListHospital = ({type, name, address, pic}) => {
@@ -9,7 +9,7 @@ const ListHospital = ({type, name, address, pic}) => {
       <View>
         <Text style={styles.title}>{type}</Text>
         <Text style={styles.title}>{name}</Text>
-        <Text style={styles.address}>{address}</Text>
+        <Text>{address}</Text>
       </View>
     </View>
   );
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
-    alignItems: 'center',
   },
   picture: {
     width: 80,
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.normal,
     color: colors.text.primary,
   },
-  address: {
+  desc: {
     fontSize: 12,
     fontFamily: fonts.primary[300],
     color: colors.text.secondary,
